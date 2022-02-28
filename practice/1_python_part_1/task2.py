@@ -14,3 +14,19 @@ from typing import Dict
 
 def set_to_dict(dict_to_update: Dict[str, int], **items_to_set) -> Dict:
     ...
+
+    
+# Solution
+
+my_dict = {"a":1, "b":2, "c":3, "d":4, "e":5, "f":4}
+second_dict = {"a":5, "b":5, "c":5, "d":3, "e":3}
+
+
+def set_to_dict(dictionary, updates):
+    for key, value in updates.items():
+        if updates[key] > dictionary[key]:
+            dictionary[key] = value
+    return dictionary
+
+
+set_to_dict(my_dict, second_dict)
