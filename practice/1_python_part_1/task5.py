@@ -14,3 +14,15 @@ Examples:
 
 def remove_duplicated_words(line: str) -> str:
     ...
+
+    
+    
+# Solution
+
+my_sentence = "Hi hi 1 1 I am a new guy here. 3 3 4 4 5"
+
+def remove_duplicated_words(sentence):
+    new_set = set(sentence.split())
+    return " ".join(new_set)
+
+remove_duplicated_words(my_sentence)
