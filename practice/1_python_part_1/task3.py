@@ -17,3 +17,21 @@ from typing import Iterable
 
 def build_from_unique_words(*lines: Iterable[str], word_number: int) -> str:
     ...
+
+    
+    
+# Solution
+def build_from_unique_words(*args, i):
+
+    try:
+        output = []
+        for arg in args:
+            new_arg = arg.split()
+            output.append(new_arg[i])
+
+        return " ".join(output)
+    except IndexError:
+        return ''
+
+
+build_from_unique_words("1 1 1 2", "3 2 5 6", "dog cat milk", i=0)
