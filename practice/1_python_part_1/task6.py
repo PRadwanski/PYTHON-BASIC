@@ -22,3 +22,17 @@ from typing import Tuple
 def get_min_max(filename: str) -> Tuple[int, int]:
     ...
 
+
+    
+# Solution
+
+def file_reader(filename):
+    values = []
+
+    with open(filename) as file:
+        for line in file:
+            values.append(int(line))
+
+    return min(values), max(values)
+
+file_reader("file1.py")
