@@ -20,4 +20,22 @@ Examples:
 def read_numbers(n: int) -> str:
     ...
 
+    
+# Solution
+
+def read_numbers(enters, n):
+    output = 0
+    counter = 0
+    for i in range(n-1):
+        if type(enters[i]) == int or type(enters[i]) == float:
+            output += enters[i]
+            counter += 1
+
+    if output == 0:
+        return "No numbers entered"
+
+    return f"Avg: {round(output/counter, 2)}"
+
+
+read_numbers(["Bunny", "Dog", 5, 6, 10], 5)
 
