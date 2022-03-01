@@ -22,3 +22,21 @@ def generate_words(n=20):
         words.append(word)
 
     return words
+
+
+
+# SOlution
+
+def generate_words(*args):
+    base_url = "/Users/pradwanski/Desktop/Python/tasks_2/file_{}.txt"
+    i = 4
+    with open(f, "w") as f:
+        for arg in args:
+            f.write(arg + "\n")
+
+    i = 5
+    with open(f"/Users/pradwanski/Desktop/Python/tasks_2/file_{i}.txt", "w") as f:
+        for arg in args:
+            f.write(arg + ",")
+
+generate_words("Hakuna", "Matata", "Latam batam")
