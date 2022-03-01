@@ -19,3 +19,17 @@ import typing
 
 def division(x: int, y: int) -> typing.Union[None, int]:
     ...
+
+    
+# Solution
+def div_num(x, y):
+    try:
+        if y == 1:
+            raise Exception("Deletion on 1 get the same result")
+        else:
+            return f"Division finished {x/y}"
+    except ZeroDivisionError:
+        print("Division by 0")
+    
+
+div_num(10, 0.3)
