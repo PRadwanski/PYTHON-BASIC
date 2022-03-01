@@ -13,3 +13,14 @@ Example:
 
     result.txt(content: "23, 78, 3")
 """
+
+
+# Solution
+
+result = ""
+
+for i in range(1, 4):
+    with open(f"/Users/pradwanski/Desktop/Python/tasks_2/file_{i}.txt") as f:
+        result = result + f.read() + " "
+        f.close()
+result
