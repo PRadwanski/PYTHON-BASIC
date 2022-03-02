@@ -28,19 +28,45 @@ PEP8 comply strictly.
 import datetime
 
 
-class Teacher:
-    ...
+# Solution
+
+class Teacher():
+    
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+    
+    def create_homework(self, task_name, days_to_complete):
+        return Homework(task_name, days_to_complete)
 
 
-class Student:
-    ...
+class Student(Teacher):
+    
+    def __init__(self, first_name, last_name):
+        super().__init__(first_name, last_name)
+    
+    def do_homework(self, text, deadline):
+        homework = Homework(text, deadline)
+        if homework.is_active() == False:
+            print("You are late")
+        else:
+            return homework
+        
 
+class Homework():
+    ''' Everything should work fine, but I have a problem with date formats  '''
+    def __init__(self, text, deadline):
+        self.text = text
+        self.deadline = deadline
+        self.created = datetime.now() # Datetime.datetime
 
-class Homework:
-    ...
+    def is_active(self):
+        return timedelta(self.deadline) + self.created > datetime.now()
+
 
 
 if __name__ == '__main__':
+
     teacher = Teacher('Dmitry', 'Orlyakov')
     student = Student('Vladislav', 'Popov')
     teacher.last_name  # Daniil
@@ -50,11 +76,13 @@ if __name__ == '__main__':
     expired_homework.created  # Example: 2019-05-26 16:44:30.688762
     expired_homework.deadline  # 0:00:00
     expired_homework.text  # 'Learn functions'
-
+    expired_homework.is_active()
     # create function from method and use it
     create_homework_too = teacher.create_homework
     oop_homework = create_homework_too('create 2 simple classes', 5)
     oop_homework.deadline  # 5 days, 0:00:00
+    oop_homework.created
+    oop_homework.is_active()
 
-    student.do_homework(oop_homework)
-    student.do_homework(expired_homework)  # You are late
+    student.do_homework(oop_homework.text, oop_homework.deadline)
+    student.do_homework(expired_homework.text, oop_homework.deadline)  # You are late
