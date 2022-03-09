@@ -12,13 +12,29 @@ If entered date is from future, return negative value for number of days
 """
 from datetime import datetime
 
+my_date = '2019-04-13'
 
-def calculate_days(from_date: str) -> int:
-    ...
+def calculate_days(date):
+    try:
+        pattern = "%Y-%m-%d"
+        d1 = datetime.strptime(date, pattern)
+        d2 = datetime.today()
+        return (d2-d1).days
+    except(ValueError, TypeError):
+        raise Exception('WrongFormatException')
 
+calculate_days(my_date)
 
-"""
-Write tests for calculate_days function
-Note that all tests should pass regardless of the day test was run
-Tip: for mocking datetime.now() use https://pypi.org/project/pytest-freezegun/
-"""
+# Tests
+
+def test_calculate_dates():
+    date = '2022-03-07'
+    assert calculate_days(date) == 1
+
+def test_calculate_dates_future():
+    date = '2022-03-10'
+    assert calculate_days(date) == -2
+
+def test_calculate_dates_now():
+    date = datetime.strftime(datetime.today(),"%Y-%m-%d")
+    assert calculate_days(date) == 0
