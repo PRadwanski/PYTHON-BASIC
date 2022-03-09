@@ -1,6 +1,26 @@
-"""
-Write tests for 2_python_part_2/task_read_write_2.py task.
-To write files during tests use temporary files:
-https://docs.python.org/3/library/tempfile.html
-https://docs.pytest.org/en/6.2.x/tmpdir.html
-"""
+def generate_words(*args):
+    i = 4
+    with open(f"/Users/pradwanski/Desktop/Python/tasks_2/file_{i}.txt", "w") as f:
+        for arg in args:
+            f.write(arg + "\n")
+
+    i = 5
+    with open(f"/Users/pradwanski/Desktop/Python/tasks_2/file_{i}.txt", "w") as f:
+        for arg in args:
+            f.write(arg + ",")
+            
+
+# tests
+def test_write_files_1():
+
+    with open("/Users/pradwanski/Desktop/Python/tasks_2/file_4.txt", "r") as f:
+        content = f.read()
+        f.close()
+    assert content == 'Hakuna\nMatata\nLatam batam\n'
+
+def test_write_files_2():
+
+    with open("/Users/pradwanski/Desktop/Python/tasks_2/file_5.txt", "r") as f:
+        content = f.read()  
+        f.close()
+    assert content == "Hakuna,Matata,Latam batam,"
