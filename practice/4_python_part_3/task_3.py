@@ -12,10 +12,23 @@ Note that address may have several domain levels
 import re
 
 
-def is_http_domain(domain: str) -> bool:
-    ...
+def is_http_domain(domain):
+    try:
+        if re.search('http', domain) is not None or re.search('https', domain) is not None:
+            return True
+        return False
+    except TypeError:
+        raise Exception("Enter an Integer")
 
 
-"""
-write tests for is_http_domain function
-"""
+def test_is_http_1():
+    domain = 'http://wikipedia.org'
+    assert is_http_domain(domain) is True
+
+def test_is_http_2():
+    domain = 'https://ru.wikipedia.org/'
+    assert is_http_domain(domain) is True
+
+def test_is_http_3():
+    domain = 'www.griddynamics.com'
+    assert is_http_domain(domain) is False
