@@ -1,25 +1,25 @@
-"""
-Write a parametrized test for two functions.
-The functions are used to find a number by ordinal in the Fibonacci sequence.
-One of them has a bug.
+# Exercise 2
 
-Fibonacci sequence: https://en.wikipedia.org/wiki/Fibonacci_number
+def div_num(x, y):
+    try:
+        if y == 1:
+            return x
+        else:
+            return x/y
+    except ZeroDivisionError:
+        return "Division by 0"
+    
 
-Task:
- 1. Write a test with @pytest.mark.parametrize decorator.
- 2. Find the buggy function and fix it.
-"""
-
-
-def fibonacci_1(n):
-    a, b = 0, 1
-    for _ in range(n-1):
-        a, b = b, a + b
-    return b
+div_num(10, 0.3)
 
 
-def fibonacci_2(n):
-    fibo = [0, 1]
-    for i in range(1, n+1):
-        fibo.append(fibo[i-1] + fibo[i-2])
-    return fibo[n]
+data = [
+    (10,1,10),
+    (8,2,4),
+    (-2,2,-1),
+    (-150, 5, -30)
+]
+
+@pytest.mark.parametrize("a,b,c", data)
+def test_div_num(a,b,c):
+    assert div_num(a,b) == c
