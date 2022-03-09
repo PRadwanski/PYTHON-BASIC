@@ -5,22 +5,21 @@ Examples:
      >>> make_request('https://www.google.com')
      200, 'response data'
 """
-from typing import Tuple
+import requests
 
+def make_request(address):
+    req = requests.get(address)
+    code = req.status_code
+    response = req.encoding
 
-def make_request(url: str) -> Tuple[int, str]:
-    ...
+    return code, response
 
+@pytest.fixture
+def address():
+    return make_request('https://www.google.com')
 
-"""
-Write test for make_request function
-Use Mock for mocking request with urlopen https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock
-Example:
-    >>> m = Mock()
-    >>> m.method.return_value = 200
-    >>> m.method2.return_value = b'some text'
-    >>> m.method()
-    200
-    >>> m.method2()
-    b'some text'
-"""
+def test_make_request_1(address):
+    assert type(address) == tuple
+
+def test_make_request_2(address):
+    assert address == (200, 'ISO-8859-1')
